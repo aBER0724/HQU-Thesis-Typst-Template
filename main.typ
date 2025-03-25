@@ -18,126 +18,198 @@
 #let keywords-en = ("Keyword 1", "Keyword 2", "Keyword 3")
 
 // 中文摘要内容
-#let abstract-zn =[
+#let abstract-zn = [
+  先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。
 
-这是一个为华侨大学计算机科学与技术学院本科生毕业论文提供的Word模版。我们的目标是帮助本科生学生更便捷地排版和格式化毕业论文，以满足学校和指导老师的要求。我们提供了专门设计的毕业论文Word模版，其中包含合适的页面设置、页眉页脚、标题样式等，简化了格式化过程。模版预设了常用的论文部分，例如封面、摘要、目录、引言等，方便用户直接填写内容。我们遵循学术写作规范，包括参考文献引用、段落格式、页码等要求。你可以根据个人需求进行定制和修改，以满足不同学校和院系的要求。使用本项目的Word模版，可以更高效地完成本科生毕业论文的排版和格式化工作。欢迎大家试用并提出宝贵的建议或意见。感谢您的支持！
+  宫中府中，俱为一体；陟罚臧否，不宜异同。若有作奸犯科及为忠善者，宜付有司论其刑赏，以昭陛下平明之理，不宜偏私，使内外异法也。
 ]
 
 // 英文摘要内容
-#let abstract-en =[
+#let abstract-en = [
+  The founding emperor passed away before his endeavor was half completed, and now the empire is divided into three parts. Yizhou is exhausted and in decline, and this is truly a critical moment of survival or destruction. However, the palace guards are tirelessly serving within, and loyal subjects are sacrificing themselves outside, all in order to repay the late emperor's kindness and show loyalty to the current emperor. It is appropriate to listen to wise advice, to honor the late emperor's virtues, to inspire the courage of loyal subjects, and not to belittle oneself or distort the truth, in order to keep the path of loyal counsel open.
 
-This is a Word template designed for undergraduate students in the College of Computer Science and Technology at Huaqiao University for their graduation thesis. Our aim is to assist students in conveniently typesetting and formatting their thesis according to the requirements of the university and their supervisors. The template provides well-designed features such as appropriate page settings, headers, footers, and title styles, simplifying the formatting process. It also includes pre-defined sections commonly found in a thesis, such as cover page, abstract, table of contents, and introduction, allowing users to directly input their content. We adhere to academic writing standards, including proper citation of references, paragraph formatting, and pagination. The template is customizable to accommodate the requirements of different schools and departments. By utilizing this Word template, students can enhance the efficiency of typesetting and formatting their undergraduate thesis. We welcome users to try it out and provide valuable suggestions or feedback. Thank you for your support!
-
+  The palace and government are one entity, and punishments should be consistent. If there are those who commit crimes or show loyalty and virtue, they should be judged by the legal system to demonstrate your fairness as emperor, rather than showing partiality that would create different laws for those inside and outside the palace.
 ]
 
-#show: thesis-hqu.with(title: title,author: author,student-id: student-id,department: department,major: major,session: session,supervisor: supervisor,date: date,abstract-zn: abstract-zn,abstract-en: abstract-en,keywords: keywords,keywords-en: keywords-en,is-coop: is-coop)
+#show: thesis-hqu.with(
+  title: title,
+  author: author,
+  student-id: student-id,
+  department: department,
+  major: major,
+  session: session,
+  supervisor: supervisor,
+  date: date,
+  abstract-zn: abstract-zn,
+  abstract-en: abstract-en,
+  keywords: keywords,
+  keywords-en: keywords-en,
+  is-coop: is-coop,
+)
 
-// 论文正文开始
-= 引#h(2em)言
+= 绪论
 
-== 研究背景和意义
+== typst 介绍
 
-为进一步规范本科毕业设计（论文）写作格式，减少格式调整的额外工作量，本模板根据《华侨大学计算机科学与技术学院本科毕业设计（论文）的基本要求及撰写格式》的要求，制作了本科学位论文Word模板供使用。
+typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极强的排版能力，通过一定的语法写文档，然后生成 pdf 文件。与 LaTeX 相比有以下的优势：
 
-本模板包括以下两章：第一章为引言，阐述编写本模板的背景与目的；第二章为模板使用方法，简要介绍了模板样式、模板内容、Word功能的使用；第三章为结论，总结了本文工作并提出未来展望。
 
-文档编辑软件为Windows下的Word 2021，不同软件、平台、Word版本的操作可能有所不同。此外，不同年份、不同院系教务与图书馆的写作标准可能稍有出入，还需要酌情修改。
+1. 编译巨快：因为提供增量编译的功能所以在修改后基本能在一秒内编译出 pdf 文件，typst 提供了监听修改自动编译的功能，可以像 Markdown 一样边写边看效果。
 
-模板可以从GitHub 下载。欢迎给GitHub仓库点亮Star！如有任何意见建议，请在GitHub仓库提Issue. 
-  
-== 国内外研究现状
-《清华大学本科学位论文Word模板》 作为一份被广泛认可和使用的优秀模版，具有良好的排版和格式规范。本模版在参考清华大学模版的基础上，经过适当的修改和调整，符合华侨大学计算机学院的本科生写作要求和规范。
- 
-= 模板使用
+2. 环境搭建简单：原生支持中日韩等非拉丁语言，不用再大量折腾字符兼容问题以及下载好几个 G 的环境。只需要下载命令行程序就能开始编译生成 pdf。
 
-本章介绍了模板样式、模板内容和Word功能的使用方法，阅读完本章即可上手使用。模板规定以下格式的文字以描述Word某项功能的操作顺序：选项卡–功能组–按钮–窗口–标签页–提示文字。
+3. 语法友好：对于普通的排版需求，上手难度跟 Markdown 相当，同时文本源码阅读性高：不会再充斥一堆反斜杠跟花括号
 
-== 模板样式
+个人观点：跟 Markdown 一样好用，跟 LaTeX 一样强大
 
-样式是Word中批量应用格式的重要功能。样式可以在开始–样式的样式库、或开始–样式–对话框加载按钮–样式窗格中查看。将光标置于待应用样式的段落、或选中待应用样式的文字，再点击样式即可应用。
 
-对样式窗格中的样式右键，可以向开始–样式–样式库中添加常用样式、或从样式库中删除样式。
+#figure(
+  image("asserts/校徽.png", height: 20%),
+  caption: "我的 image 实例 0",
+)
 
-样式之间会因为优先级顺序相互覆盖，或者被手动设置的格式所覆盖。如果无法正确应用样式，可以尝试对文字使用开始–字体–清除所有格式后再应用样式。
+== 基本语法
 
-常用的样式包括：正文、标题1、标题2、标题3、公式、图片、图题、表题、编号引用、参考文献、章标题等。
+=== 代码执行
+
+正文可以像前面那样直接写出来，隔行相当于分段。
+
+个人理解：typst 有两种环境，代码和内容，在代码的环境中会按代码去执行，在内容环境中会解析成普通的文本，代码环境用{}表示，内容环境用[]表示，在 content 中以 \# 开头来接上一段代码，比如\#set rule，而在花括号包裹的块中调用代码就不需要 \#。
+
+
+=== 标题
+
+类似 Markdown 里用 \# 表示标题，typst 里用 = 表示标题，一级标题用一个 =，二级标题用两个 =，以此类推。
+
+
+间距、字体等会自动排版。
+
+\#pagebreak() 函数相当于分页符，在华科的要求里，第一级标题应当分页，请手动分页。
+
+= 本模板相关封装
 
 == 图片
-图片可以通过插入–插图–图片插入，或者直接从外部复制至文档，示例见图二.1。如果插入文档的图片清晰度下降，可以在文件–选项–高级–图像大小和质量中，勾选不压缩文件中的图像或调高图片的默认分辨率。
 
-#figures-hqu(
-  figure(image("asserts/校徽与中英文标准字横式组合.png", width: 7cm)),
-  caption: [华侨大学标志],
-)
+改用模块 #link("https://typst.app/universe/package/i-figured")[i-figure] 实现图片，表格与公式的编号。
 
-并排放置多幅图片可以借助无框线表格排列，示例见图二.2。
- 	 
-#figures-hqu(
-  (
-    figure(image("asserts/校徽与中英文标准字中轴组合.png", width: 3cm)),
-    figure(image("asserts/校徽与中英文标准字横式组合.png", width: 6cm))
-  ),
-    caption: "并排图片示例",
-    individual-captions: ([华侨大学标志1], [华侨大学标志2])
-)
+#figure(
+  image("asserts/校徽.png", height: 20%),
+  caption: "我的 image 实例 1",
+) <img1>
 
-更便捷的操作为，直接选中上述示例，在文中任意位置以"保留源格式"方式粘贴，再选中图题中的图片编号，右键选择"更新域"（或按快捷键F9）。
-对于并排图片来说，进行上述操作后，需要根据新图片大小自动调整表格布局。选中表格，在布局–单元格大小–自动调整里，先选择"根据内容自动调整表格"，再选择"根据窗口自动调整表格"。
-在正文中插入题注的交叉引用通过引用–题注–交叉引用，引用类型选择"图"，引用内容选择"仅标签和编号"，勾选"插入为超链接"，选择需要引用的题注，点击"插入"。
+引用的话就在 figure 后加上标签，在原标签前加上前缀 `fig:, tbl:, eqt:`（分别对应图片，表格与公式）。
+
+#figure(
+  image("asserts/校徽.png", height: 20%),
+  caption: "我的 image 实例 2",
+) <img2>
+
+// 引用示例: @fig:img1
 
 == 表格
-表格可以通过插入–表格–表格插入，在表设计–表格样式中应用三线表样式。在表设计–表格样式选项中勾选标题行才能确保首行的下框线正常显示。三线表如表二.1所示。
 
+表格跟图片差不多，但是表格的输入要复杂一点，建议在 typst 官网学习，自由度特别高，定制化很强。
+
+同样使用 figure 函数包裹表格
+
+#figure(
+  table(
+    columns: (100pt, 100pt, 100pt),
+    inset: 10pt,
+    stroke: 0.7pt,
+    align: horizon,
+    [], [*Area*], [*Parameters*],
+    image("asserts/校徽.png", height: 10%),
+    [$ pi h (D^2 - d^2) / 4 $ <->],
+    [
+      $h$: height \
+      $D$: outer radius \
+      $d$: inner radius
+    ],
+
+    image("asserts/校徽.png", height: 10%), [$ sqrt(2) / 12 a^3 $ <->], [$a$: 边长],
+  ),
+  caption: "芝士样表",
+) <tbl1>
 
 #table-hqu(
   caption: "三线表示例",
-  header-bold: true,
   data: (
-    ("姓名", "学号", "数学成绩", "英语成绩"),
-    ("丁纪翔", "20010001", "97.5", "100"),
-    ("赵冬雪", "20010002", "98.8", "99.7")
+    ("Country List", "Country List", "Country List"),
+    ("Country Name or Area Name", "ISO ALPHA Code", "ISO ALPHA"),
+    ("Afghanistan", "AF", "AFT"),
+    ("Aland Islands", "AX", "ALA"),
+    ("Albania", "AL", "ALB"),
+    ("Algeria", "DZ", "DZA"),
+    ("American Samoa", "AS", "ASM"),
+    ("Andorra", "AD", "AND"),
+    ("Angola", "AP", "AGO"),
+  ),
+)
+
+#table-hqu(
+  caption: "三线表示例2",
+  data: (
+    ("Country List", "Country List", "Country List", "Country List"),
+    ("Country Name or Area Name", "ISO ALPHA 2 Code", "ISO ALPHA 3", "8"),
+    ("Afghanistan", "AF", "AFT", "7"),
+    ("Aland Islands", "AX", "ALA", "6"),
+    ("Albania", "AL", "ALB", "5"),
+    ("Algeria", "DZ", "DZA", "4"),
+    ("American Samoa", "AS", "ASM", "3"),
+    ("Andorra", "AD", "AND", "2"),
+    ("Angola", "AP", "AGO", "1"),
   )
 )
-表格后需要额外空一行。
-表注插入和图注插入相同，见第2.2节。
-如果需要为跨页表格在续表前添加题注，只需在插入–文本–文档部件下拉菜单中插入续表题注，用对前页表的交叉引用文字代替原文字，其中设置交叉引用窗口–引用内容为整项题注，在交叉引用文字前再加上续字，最后对文字应用题注样式即可。
-
-= 公式
-
-== 公式样式
-公式样式名为公式，用于行间公式。需要提前安装字体XITS Math 。
-
-通过快捷键Alt和=、或插入–符号–公式，可以插入一公式占位符。在公式占位符内，公式–转换支持以Unicode或LaTeX语法构建公式，插入–符号–公式下拉菜单提供了若干内置公式，公式–符号、公式–结构提供了大量预置的字符和表达式结构。
-
-常用字符可以在公式–符号面板中点击插入。输入字符的原理为自动更正：如果一串字符（通常以反斜线\开头）在公式–转换–对话框加载按钮–公式选项窗口–数学符号自动更正–自动更正窗口–数学符号自动更正中定义了自动更正命令、并且勾选了键入时自动替换，则这串字符会在键入空格˽后被替换为指定字符。字符的输入命令可以在符号面板的按钮上通过鼠标悬停查看，也可以在数学符号自动更正中定义和修改。
-
-公式的具体输入方法见清华大学《Word公式输入指南》。这里以"无框线表格排版公式和题注编号"为例，示例如公式(二 1)所示：
-	ReLU{\left(x\right)}=\max{\left(0,\ x\right)}.	(二 1)
-
-插入无框线表格排版的行间公式通过插入–文本–文档部件–常规，选择"公式块"。输入公式后，选中右侧公式编号，按F9更新域。
-
-若您要自定义公式块，并重复使用您自定义的排版方式，则可以选择表格，通过插入–文本–文档部件–将所选内容保存到文档部件库，在新建构建基块窗口中设置类别为常规，选项为仅插入内容，修改保存位置、名称、库和说明后保存即可，此后即可在插入–文本–文档部件下拉菜单中快捷插入表格。
-
-公式在正文中的交叉引用通过引用–题注–交叉引用，选择引用类型为"公式"，引用内容为"整项题注"，勾选"插入为超链接"，选择要引用的公式题注，点击"插入"。
 
 == 列表
 
-列表样式包括：
-列表编号~列表编号5，用于编号列表，编号格式分别为带点阿拉伯数字1.、带圆括号阿拉伯数字(1)、带点小写英文字母a.、带顿号汉字一、、大写罗马数字I.
-列表项目符号~列表项目符号5，用于符号列表，序号格式分别为实心圆点•、空心圆点◦、实心方块▪、空心方块▫、实心圆●.
-为编号列表指定从1起重新编号，需在编号右键菜单中选择重新开始于1 .
+- 无序列表1: 1
 
-== 脚注
+- 无序列表2: 2
 
-脚注样式名为脚注文本。
+列表后的正文，应当有缩进。这里加入一个 \#indent() 函数来手动生成段落缩进，是因为在目前的 typst 设计里，按英文排版的习惯，连续段落里的第一段不会缩进，也包括各种列表。
 
-通过引用–脚注–插入脚注，可以在光标所在位置插入脚注。脚注序号和脚注文本间隔0.5字符。
+1. 有序列表1
+2. 有序列表2
 
-= 参考文献
-#show: reference-content
+列表后的正文，应当有缩进，但是这里没有，请自己在段首加上\#indent()
 
-= 致#h(2em)谢
-#show: acknowledgment([
+想自己定义可以自己set numbering，建议用 \#[] 包起来保证只在该作用域内生效：
+
+#[
+  #set enum(numbering: "1.a)")
+  + 自定义列表1
+    + 自定义列表1.1
+  + 自定义列表2
+    + 自定义列表2.1
+]
+
+= 这是一章占位的
+
+== 占位的二级标题 1
+
+== 占位的二级标题 2
+
+== 占位的二级标题 3
+
+== 占位的二级标题 4
+
+=== 占位的三级标题 1
+
+=== 占位的三级标题 2
+
+==== 占位的四级标题 1
+
+==== 占位的四级标题 2
+
+== 占位的二级标题 5
+
+== 占位的二级标题 6
+
+#reference-content()
+
+#acknowledgment([
   完成本篇论文之际，我要向许多人表达我的感激之情。
 
   首先，我要感谢我的指导教师，他/她对本文提供的宝贵建议和指导。所有这些支持和指导都是无私的，而且让我受益匪浅。
