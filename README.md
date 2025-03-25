@@ -8,12 +8,12 @@
 - 安装 [Typst](https://typst.app/) 最新版本
 - 安装中文字体：宋体、黑体、楷体、仿宋
 
-### 编译论文
+### 编译论文  
 ```bash
 typst compile main.typ
 ```
 
-## 项目结构
+## 项目结构  
 ```
 .
 ├── assets/            # 学校标识/图表资源
@@ -27,6 +27,6 @@ typst compile main.typ
 └── references.bib     # 参考文献数据
 ```
 
-## 预览 
+## 预览  
 
-![alt text](<assets/preview.png>)
+![封面预览](<assets/preview.png> "width=80%")
