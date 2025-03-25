@@ -64,7 +64,7 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
 
 
 #figure(
-  image("asserts/校徽.png", height: 20%),
+  image("assets/校徽.png", height: 20%),
   caption: "我的 image 实例 0",
 )
 
@@ -93,14 +93,14 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
 改用模块 #link("https://typst.app/universe/package/i-figured")[i-figure] 实现图片，表格与公式的编号。
 
 #figure(
-  image("asserts/校徽.png", height: 20%),
+  image("assets/校徽.png", height: 20%),
   caption: "我的 image 实例 1",
 ) <img1>
 
 引用的话就在 figure 后加上标签，在原标签前加上前缀 `fig:, tbl:, eqt:`（分别对应图片，表格与公式）。
 
 #figure(
-  image("asserts/校徽.png", height: 20%),
+  image("assets/校徽.png", height: 20%),
   caption: "我的 image 实例 2",
 ) <img2>
 
@@ -119,7 +119,7 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
     stroke: 0.7pt,
     align: horizon,
     [], [*Area*], [*Parameters*],
-    image("asserts/校徽.png", height: 10%),
+    image("assets/校徽.png", height: 10%),
     [$ pi h (D^2 - d^2) / 4 $ <->],
     [
       $h$: height \
@@ -127,7 +127,7 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
       $d$: inner radius
     ],
 
-    image("asserts/校徽.png", height: 10%), [$ sqrt(2) / 12 a^3 $ <->], [$a$: 边长],
+    image("assets/校徽.png", height: 10%), [$ sqrt(2) / 12 a^3 $ <->], [$a$: 边长],
   ),
   caption: "芝士样表",
 ) <tbl1>
@@ -207,9 +207,11 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
 
 == 占位的二级标题 6
 
-#reference-content()
+= 参考文献
+#show: reference-content
 
-#acknowledgment([
+= 致#h(2em)谢
+#show: acknowledgment([
   完成本篇论文之际，我要向许多人表达我的感激之情。
 
   首先，我要感谢我的指导教师，他/她对本文提供的宝贵建议和指导。所有这些支持和指导都是无私的，而且让我受益匪浅。

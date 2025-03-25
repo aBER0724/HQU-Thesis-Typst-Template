@@ -40,7 +40,7 @@
     #v(-1cm)
     #text(font: "STkaiti", size: zh("-0"))[*本科毕业论文*]
     #v(-1em)
-    #image("../asserts/校徽与中英文标准字中轴组合.png", width: 3.06cm)
+    #image("../assets/校徽与中英文标准字中轴组合.png", width: 3.06cm)
     #v(1em)
 
     // 论文题目信息

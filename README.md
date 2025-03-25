@@ -1,4 +1,4 @@
-# 华侨大学研究生学位论文 Typst 模板
+# 华侨大学本科毕业论文 Typst 模板
 
 本项目提供用于华侨大学本科毕业论文撰写的 Typst 模板。
 
@@ -16,7 +16,7 @@ typst compile main.typ
 ## 项目结构
 ```
 .
-├── asserts/            # 学校标识/图表资源
+├── assets/            # 学校标识/图表资源
 ├── fonts/             # 所需字体文件
 ├── utilites/          # 论文组件模块
 │   ├── abstract.typ   # 中英文摘要
@@ -26,3 +26,7 @@ typst compile main.typ
 ├── hqu-thesis.typ     # 论文模板主体
 └── references.bib     # 参考文献数据
 ```
+
+## 预览 
+
+![alt text](<assets/preview.png>)
