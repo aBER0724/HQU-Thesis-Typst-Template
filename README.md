@@ -29,4 +29,4 @@ typst compile main.typ
 
 ## 预览  
 
-![封面预览](<assets/preview.png> "width=80%")
+![封面预览](assets/preview.png){width=70%}
