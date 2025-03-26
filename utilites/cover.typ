@@ -48,7 +48,6 @@
       columns: (2.44cm, 11.77cm),
       rows: 4em,
       align: (center, center),
-      // [#text(font: "Microsoft YaHei", size: 22pt,  weight: 900)[题目：]], [#text(font: "Microsoft YaHei", size: 22pt,  weight: 900)[#title]],
       [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#v(1em)题目：]],
       [#v(1em)#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#title]],
       hlinex(start: 1, stroke: 0.5pt),

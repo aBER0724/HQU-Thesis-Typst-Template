@@ -2,8 +2,11 @@
 #import "@preview/pointless-size:0.1.1": zh
 
 // 参考文献
-#let reference-content(body) = {
-  set text(size: zh(5)) // 五号字
+#let reference-content(file_path) = {
+  set text(font: "SimHei")
+  heading(level: 1, numbering: none)[参考文献]
+
+  set text(font: ("Times New Roman", "SimSun"), size: zh(5)) // 五号字
   set par(leading: 1em)
 
   // 隐藏引用所有参考文献，但不显示引用标记
@@ -12,5 +15,8 @@
     [@girshick2014rich; @redmon2016you; @liu2016ssd]
   }
 
-  bibliography("../references.bib", title: none, style: "gb-7714-2005-numeric")
+  {
+    v(-0.25em)
+    bibliography("../" + file_path, title: none, style: "gb-7714-2005-numeric")
+  }
 }

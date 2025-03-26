@@ -52,21 +52,24 @@
             break
           }
         }
-
         if current-heading != none {
           // 获取当前章节的编号
           let heading-number = counter(heading).at(current-heading.location()).first()
 
           // 显示章节标题 "第X章 章节名称"
-          set text(size: zh(5))
+          set text(font: "SimSun", size: zh(5))
           align(center)[
-            #if current-heading.body == [参考文献] or current-heading.body == [致#h(2em)谢] {
+            #if current-heading.body == [参考文献] {
               current-heading.body
+              v(-8pt)
+            } else if current-heading.body == [致#h(2em)谢] {
+              current-heading.body
+              v(-12pt)
             } else {
               "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
+              v(-8pt)
             }
           ]
-          v(-8pt)
         }
         line(length: 100%, stroke: 0.5pt)
       }
@@ -83,7 +86,7 @@
       set text(font: "SimSun", size: zh(5))
       set align(center)
       [#title]
-      v(-8pt)
+      v(-6pt)
       line(length: 100%, stroke: 0.5pt)
     },
   )
@@ -122,7 +125,7 @@
         "第" + numbering("一", nums.pos().at(0)) + "章" + h(0.5em)
       } else if nums.pos().len() > 1 {
         // 二级及以下标题：数字编号格式
-        numbering("1.1", ..nums.pos()) + h(0.25em)
+        numbering("1.1", ..nums.pos()) + h(0.75em)
       }
     },
   )
@@ -130,12 +133,22 @@
   // 一级标题格式：三号黑体居中
   show heading.where(level: 1): it => {
     pagebreak()
-    show: show-cn-fakebold
-    set text(weight: "bold", size: zh(3))
+    set text(size: zh(3))
+
     set align(center)
     show regex("[0-9]+"): text.with(font: "Arial")
     v(1.155em)
-    it
+
+    if it.body == [参考文献] {
+      v(1.75em)
+      it
+    } else if it.body == [致#h(2em)谢] {
+      v(0.725em)
+      it
+    } else {
+      show: show-cn-fakebold
+      [*#it*]
+    }
     v(1em)
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
     v(-1.225em)
@@ -144,7 +157,7 @@
   // 二级标题格式：四号黑体左对齐
   show heading.where(level: 2): it => {
     show: show-cn-fakebold
-    set text(weight: "bold", size: zh(4))
+    set text(size: zh(4))
     set align(left)
     show regex("[0-9]+"): text.with(font: "Arial")
     v(0.3em)
@@ -155,23 +168,11 @@
   // 三级标题格式：小四号黑体左对齐
   show heading.where(level: 3): it => {
     show: show-cn-fakebold
-    set text(weight: "bold", size: zh(-4))
+    set text(size: zh(-4))
     set align(left)
     show regex("[0-9]+"): text.with(font: "Arial")
     it
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-  }
-
-  // 参考文献标题样式
-  show heading.where(body: [参考文献]): it => {
-    show: show-cn-fakebold
-    set text(font: "SimHei", weight: "bold", size: zh(3))
-    set align(left)
-    show regex("[0-9]+"): text.with(font: "Arial")
-    v(1.5em)
-    it
-    par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-    v(-0.54em)
   }
 
   body

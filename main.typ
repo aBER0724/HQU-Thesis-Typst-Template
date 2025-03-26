@@ -1,8 +1,6 @@
 #import "hqu-thesis.typ": thesis-hqu
 #import "utilites/abstract.typ": chinese-abstract, english-abstract
 #import "utilites/figure.typ": table-hqu, figures-hqu
-#import "utilites/reference.typ": reference-content
-#import "utilites/acknowledgment.typ": acknowledgment
 #import "@preview/mitex:0.2.5": *
 
 #let title = "计算机科学与技术学院本科毕业设计（论文）模板"
@@ -30,6 +28,8 @@
 
   The palace and government are one entity, and punishments should be consistent. If there are those who commit crimes or show loyalty and virtue, they should be judged by the legal system to demonstrate your fairness as emperor, rather than showing partiality that would create different laws for those inside and outside the palace.
 ]
+
+
 
 #show: thesis-hqu.with(
   title: title,
@@ -207,7 +207,7 @@ typst 是最新最热的标记文本语言，定位与 LaTeX 类似，具有极�
 
 == 占位的二级标题 6
 
-= 参考文献
+
 #show: reference-content
 
 = 致#h(2em)谢

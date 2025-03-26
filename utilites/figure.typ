@@ -152,6 +152,7 @@
                 cells.push(
                   box(
                     width: 100%,
+                    height: 1.5em,
                     inset: 5pt,
                     {
                       set text(font: ("Times New Roman", "SimSun"), size: zh(-4))
@@ -169,6 +170,7 @@
                 cells.push(
                   box(
                     width: 100%,
+                    height: 1.5em,
                     inset: 5pt,
                     {
                       set text(font: ("Times New Roman", "SimSun"), size: zh(-4))

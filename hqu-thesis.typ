@@ -1,8 +1,9 @@
 #import "utilites/cover.typ": cover-page
 #import "utilites/abstract.typ": chinese-abstract, english-abstract
-#import "utilites/acknowledgment.typ": acknowledgment
 #import "utilites/basic-style.typ": *
 #import "utilites/table-of-contens.typ": table-of-contents
+#import "utilites/reference.typ": reference-content
+#import "utilites/acknowledgement.typ": acknowledgement-content
 
 // 华侨大学论文模板主函数
 #let thesis-hqu(
@@ -19,11 +20,13 @@
   abstract-zn: none, // 中文摘要内容
   abstract-en: none, // 英文摘要内容
   is-coop: false, // 是否校企合作项目
-  acknowledgment-content: none, // 致谢内容
+  acknowledgement: none, // 致谢内容
+  reference: "", // 参考文献 .bib 路径
   body, // 正文内容
 ) = {
   // 基础样式
   let fig-counter = counter("figure")
+  show: _page_header_style
   show: _basic_font_style
   show: _basic_par_style
   show: _page_footer_style
@@ -45,4 +48,8 @@
 
   // 正文
   body
+
+  reference-content(reference)
+
+  acknowledgement-content(acknowledgement)
 }
