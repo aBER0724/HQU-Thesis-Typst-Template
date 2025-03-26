@@ -12,7 +12,9 @@
       set align(center)
       set text(font: "Times New Roman", size: zh(5))
       let page-num = counter(page).get().first()
-      text(font: "Times New Roman", size: zh(5))[#(page-num - 3)]
+      if page-num > 3 {
+        text(font: "Times New Roman", size: zh(5))[#(page-num - 3)]
+      }
     },
   )
   body
@@ -31,59 +33,101 @@
   body
 }
 
-// 页眉样式：奇数页显示章节名，偶数页显示论文标题
+// // 页眉样式：奇数页显示章节名，偶数页显示论文标题
+// #let _page_header_style(title: "", body) = {
+//   set page(
+//     paper: "a4",
+//     margin: (top: 3.8cm, bottom: 3.8cm, left: 3.2cm, right: 3.2cm),
+//     header-ascent: 12%, // 增大该值使页眉下移
+//     header: context {
+//       let page-number = counter(page).get().first()
+//       if page-number >= 2 {
+//         let headings = query(heading.where(level: 1))
+
+//         let current-heading = none
+
+//         for hdg in headings {
+//           let hdg-page = counter(page).at(hdg.location()).first()
+//           if hdg-page <= page-number {
+//             current-heading = hdg
+//           } else {
+//             break
+//           }
+//         }
+//         if current-heading != none {
+//           // 获取当前章节的编号
+//           let heading-number = counter(heading).at(current-heading.location()).first()
+
+//           // 显示章节标题 "第X章 章节名称"
+//           set text(font: "SimSun", size: zh(5))
+//           align(center)[
+//             #if current-heading.body == [参考文献] {
+//               current-heading.body
+//               v(-8pt)
+//             } else if current-heading.body == [致#h(2em)谢] {
+//               current-heading.body
+//               v(-12pt)
+//             } else {
+//               "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
+//               v(-8pt)
+//             }
+//           ]
+//         }
+//         line(length: 100%, stroke: 0.5pt)
+//       }
+//     },
+//   )
+//   body
+// }
+
 #let _page_header_style(title: "", body) = {
   set page(
     paper: "a4",
     margin: (top: 3.8cm, bottom: 3.8cm, left: 3.2cm, right: 3.2cm),
-    header-ascent: 12%, // 增大该值使页眉下移
+    header-ascent: 12%,
     header: context {
       let page-number = counter(page).get().first()
-      if page-number >= 2 {
-        let headings = query(heading.where(level: 1))
-
-        let current-heading = none
-
-        for hdg in headings {
-          let hdg-page = counter(page).at(hdg.location()).first()
-          if hdg-page <= page-number {
-            current-heading = hdg
-          } else {
-            break
+      if page-number >= 3 {  // 从第三页开始显示页眉[^1]
+        if calc.odd(page-number) {  // 奇数页显示一级标题[^2]
+          let headings = query(heading.where(level: 1))
+          
+          let current-heading = none
+          for hdg in headings {
+            let hdg-page = counter(page).at(hdg.location()).first()
+            if hdg-page <= page-number {
+              current-heading = hdg
+            } else {
+              break
+            }
           }
-        }
-        if current-heading != none {
-          // 获取当前章节的编号
-          let heading-number = counter(heading).at(current-heading.location()).first()
 
-          // 显示章节标题 "第X章 章节名称"
+          if current-heading != none {
+            set text(font: "SimSun", size: zh(5))
+            align(center)[
+              #current-heading.body
+              #v(-8pt)
+            ]
+          }
+        } else {  // 偶数页显示论文题目[^3]
           set text(font: "SimSun", size: zh(5))
           align(center)[
-            #if current-heading.body == [参考文献] {
-              current-heading.body
-              v(-8pt)
-            } else if current-heading.body == [致#h(2em)谢] {
-              current-heading.body
-              v(-12pt)
-            } else {
-              "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
-              v(-8pt)
-            }
+            #title
+            #v(-8pt)
           ]
         }
         line(length: 100%, stroke: 0.5pt)
       }
-    },
+    }
   )
-
   body
 }
+
 
 // 静态页眉样式，居中显示标题
 #let _static_page_header_style(title: "", body) = {
   set page(
     header: context {
-      set text(font: "SimSun", size: zh(5))
+      set text(font: ("Times New Roman","SimSun"), size: zh(5))
       set align(center)
       [#title]
       v(-6pt)

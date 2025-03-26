@@ -3,7 +3,7 @@
 
 // 致谢
 #let acknowledgement-content(body) = {
-
+  show:_static_page_header_style.with(title: [致#h(2em)谢])
   set text(font: "SimHei", size: zh(3))
   heading(level: 1, numbering: none)[致#h(2em)谢]
 

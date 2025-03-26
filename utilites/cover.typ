@@ -16,7 +16,7 @@
   ) = {
   set page(margin: (top: 3.8cm, bottom: 3.4cm, left: 3.2cm, right: 3.2cm))
   align(center)[
-    #v(-1em)
+    #v(-1.75em)
 
     // 添加校企合作选项，放在右上角
     #place(
@@ -37,24 +37,24 @@
     )
     #show: show-cn-fakebold
     #text(font: "STkaiti", size: zh("-0"))[*华侨大学*]
-    #v(-1cm)
+    #v(-0.5cm)
     #text(font: "STkaiti", size: zh("-0"))[*本科毕业论文*]
-    #v(-1em)
+    #v(-0.6em)
     #image("../assets/校徽与中英文标准字中轴组合.png", width: 3.06cm)
-    #v(1em)
+    #v(2em)
 
     // 论文题目信息
     #gridx(
       columns: (2.44cm, 11.77cm),
       rows: 4em,
       align: (center, center),
-      [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#v(1em)题目：]],
-      [#v(1em)#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#title]],
+      [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#v(0.5em)题目：]],
+      [#v(1em)#par(leading: 2.5em, justify: false)[#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#title]]],
       hlinex(start: 1, stroke: 0.5pt),
-      [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[]],
+      [],
       hlinex(start: 1, stroke: 0.5pt),
     )
-    #v(3em)
+    #v(3.15em)
 
     // 学生信息表格
     #set text(size: zh(3))
@@ -90,7 +90,7 @@
     // 页脚日期信息
     #v(-0.5em)
     #text(size: zh(4))[*华侨大学教务处印制*]
-    #v(0.25em)
+    #v(0.3em)
     #if date != none {
       text(size: zh(4))[#date.split("年").at(0)*年*#date.split("年").at(1).split("月").at(0)*月*]
     }

@@ -26,6 +26,7 @@
 
 // 英文摘要
 #let english-abstract(body, keywords-en) = {
+  show:_static_page_header_style.with(title: [ABSTRACT])
   show: _static_page_footer_style
   v(2.65em)
   align(center)[
