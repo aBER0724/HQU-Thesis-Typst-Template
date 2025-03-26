@@ -33,53 +33,6 @@
   body
 }
 
-// // 页眉样式：奇数页显示章节名，偶数页显示论文标题
-// #let _page_header_style(title: "", body) = {
-//   set page(
-//     paper: "a4",
-//     margin: (top: 3.8cm, bottom: 3.8cm, left: 3.2cm, right: 3.2cm),
-//     header-ascent: 12%, // 增大该值使页眉下移
-//     header: context {
-//       let page-number = counter(page).get().first()
-//       if page-number >= 2 {
-//         let headings = query(heading.where(level: 1))
-
-//         let current-heading = none
-
-//         for hdg in headings {
-//           let hdg-page = counter(page).at(hdg.location()).first()
-//           if hdg-page <= page-number {
-//             current-heading = hdg
-//           } else {
-//             break
-//           }
-//         }
-//         if current-heading != none {
-//           // 获取当前章节的编号
-//           let heading-number = counter(heading).at(current-heading.location()).first()
-
-//           // 显示章节标题 "第X章 章节名称"
-//           set text(font: "SimSun", size: zh(5))
-//           align(center)[
-//             #if current-heading.body == [参考文献] {
-//               current-heading.body
-//               v(-8pt)
-//             } else if current-heading.body == [致#h(2em)谢] {
-//               current-heading.body
-//               v(-12pt)
-//             } else {
-//               "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
-//               v(-8pt)
-//             }
-//           ]
-//         }
-//         line(length: 100%, stroke: 0.5pt)
-//       }
-//     },
-//   )
-//   body
-// }
-
 #let _page_header_style(title: "", body) = {
   set page(
     paper: "a4",
@@ -102,9 +55,10 @@
           }
 
           if current-heading != none {
+            let heading-number = counter(heading).at(current-heading.location()).first()
             set text(font: "SimSun", size: zh(5))
             align(center)[
-              #current-heading.body
+              第#numbering("一", heading-number)章#h(0.5em)#current-heading.body
               #v(-8pt)
             ]
           }
