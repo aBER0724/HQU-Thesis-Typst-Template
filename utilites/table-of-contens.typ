@@ -5,26 +5,13 @@
 #let table-of-contents() = {
   show:_static_page_header_style.with(title: [目#h(2em)录])
   show: _static_page_footer_style
-  v(2em)
+  v(2.775em)
   set align(center)
   text(font: ("Times New Roman", "SimHei"), size: zh(3))[目#h(2em)录]
-
-  // 设置章节编号格式
-  set heading(
-    numbering: (..nums) => {
-      if nums.pos().len() == 1 {
-        // 一级标题
-        "第" + numbering("一", nums.pos().at(0)) + "章" + h(0.5em)
-      } else if nums.pos().len() > 1 {
-        // 二级及以下标题
-        numbering("1.1", ..nums.pos()) + h(0.25em)
-      }
-    },
-  )
+  v(-0.15em)
 
   // 设置目录条目格式
   show outline.entry: it => {
-    set text(font: ("Times New Roman", "SimSun"), size: zh(-4)) // 小四号字体
 
     if it.level == 1 {
       show regex("[0-9]+"): text.with(font: "Arial")
@@ -36,7 +23,8 @@
             {
               // 显示一级标题的序号和内容
               let section-num = counter(heading).at(it.element.location()).first()
-              text(font: ("Times New Roman", "SimHei"), size: zh(4))[ // 四号字体
+              v(0.75em)
+              text(font: ("Times New Roman", "SimHei"), size: zh(-4))[ // 四号字体
                 #if it.element.body != [参考文献] and it.element.body != [致#h(2em)谢] {
                   [第#numbering("一", section-num)章 #h(0.5em) #it.element.body]
                 } else {
@@ -44,17 +32,11 @@
                 }
               ]
             },
-            align(center + horizon)[#box(width: 100%, repeat[#text(font: "SimHei")[.#h(-3pt)]])],
+            align(bottom)[#box(width: 100%, repeat[#text(font: "SimHei",size: zh(-4))[.#h(-3pt)]])],
             {
               let page-num = counter(page).at(it.element.location()).first()
-              // 前言部分使用罗马数字
-              if page-num <= 5 {
-                let roman-numeral = numbering("I", page-num - 2)
-                text(font: "Times New Roman", size: zh(5))[#roman-numeral]
-              } else {
-                // 正文部分使用阿拉伯数字
-                text(font: "Times New Roman", size: zh(5))[#(page-num - 5)]
-              }
+              v(0.75em)
+              text(font: "Times New Roman", size: zh(-4))[#(page-num - 3)]
             },
           )
         ],
@@ -76,14 +58,13 @@
               // 添加缩进，根据级别计算
               let indent-amount = (it.level - 1) * 2
               (
-                h(indent-amount * 0.5em)
-                  + text(font: ("Times New Roman", "SimSun"))[#nums-str #h(0.25em) #it.element.body]
+                h(indent-amount * 0.5em) + text(font: ("Times New Roman", "SimSun"), size: zh(-4))[#nums-str #h(0.25em) #it.element.body]
               )
             },
-            align(center + horizon)[#box(width: 100%, repeat[.])],
+            align(bottom)[#box(width: 100%, repeat[#text(font: "SimSun", )[.#h(-2.5pt)]])],
             {
               let page-num = counter(page).at(it.element.location()).first()
-              text(font: "Times New Roman")[#(page-num - 5)]
+              text(font: "Times New Roman", size: zh(-4))[#(page-num - 3)]
             },
           )
         ],

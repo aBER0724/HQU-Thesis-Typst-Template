@@ -4,16 +4,15 @@
 // 页眉样式函数空实现
 #let _page_header_style(title) = { }
 
-// 静态页眉样式，居中显示标题
-#let _static_page_header_style(title: "", body) = {
+// 页脚样式，居中显示阿拉伯数字页码
+#let _page_footer_style(body) = {
   set page(
-    header: context {
-      v(-2em)
-      set text(size: zh(5))
+    footer: context {
+      v(-1.1em)
       set align(center)
-      [#title]
-      v(-8pt)
-      line(length: 100%, stroke: 0.5pt)
+      set text(font: "Times New Roman", size: zh(5))
+      let page-num = counter(page).get().first()
+      text(font: "Times New Roman", size: zh(5))[#(page-num - 3)]
     },
   )
   body
@@ -23,8 +22,9 @@
 #let _static_page_footer_style(body) = {
   set page(
     footer: context {
-      v(-2em)
+      v(-1.255em)
       set align(center)
+      set text(font: "Times New Roman", size: zh(5))
       counter(page).display("I")
     },
   )
@@ -36,73 +36,38 @@
   set page(
     paper: "a4",
     margin: (top: 3.8cm, bottom: 3.8cm, left: 3.2cm, right: 3.2cm),
-    header-ascent: 10%, // 增大该值使页眉下移
+    header-ascent: 12%, // 增大该值使页眉下移
     header: context {
       let page-number = counter(page).get().first()
       if page-number >= 2 {
-        // 判断奇偶页
-        // if calc.odd(page-number) {
-        //   // 奇数页：显示当前章节标题
-        //   let headings = query(heading.where(level: 1))
-
-        //   let current-heading = none
-
-        //   for hdg in headings {
-        //     let hdg-page = counter(page).at(hdg.location()).first()
-        //     if hdg-page <= page-number {
-        //       current-heading = hdg
-        //     } else {
-        //       break
-        //     }
-        //   }
-
-        //   if current-heading != none {
-        //     // 获取当前章节的编号
-        //     let heading-number = counter(heading).at(current-heading.location()).first()
-
-        //     // 显示章节标题 "第X章 章节名称"
-        //     align(center)[
-        //       #if current-heading.body == [参考文献] or current-heading.body == [致#h(2em)谢] {
-        //         current-heading.body
-        //       } else {
-        //         "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
-        //       }
-        //     ]
-        //     v(-8pt)
-        //   }
-        // } else {
-        //   // 偶数页：显示论文标题
-        //   align(center)[#title]
-        //   v(-8pt)
-        // }
-        // 
         let headings = query(heading.where(level: 1))
 
-          let current-heading = none
+        let current-heading = none
 
-          for hdg in headings {
-            let hdg-page = counter(page).at(hdg.location()).first()
-            if hdg-page <= page-number {
-              current-heading = hdg
+        for hdg in headings {
+          let hdg-page = counter(page).at(hdg.location()).first()
+          if hdg-page <= page-number {
+            current-heading = hdg
+          } else {
+            break
+          }
+        }
+
+        if current-heading != none {
+          // 获取当前章节的编号
+          let heading-number = counter(heading).at(current-heading.location()).first()
+
+          // 显示章节标题 "第X章 章节名称"
+          set text(size: zh(5))
+          align(center)[
+            #if current-heading.body == [参考文献] or current-heading.body == [致#h(2em)谢] {
+              current-heading.body
             } else {
-              break
+              "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
             }
-          }
-
-          if current-heading != none {
-            // 获取当前章节的编号
-            let heading-number = counter(heading).at(current-heading.location()).first()
-
-            // 显示章节标题 "第X章 章节名称"
-            align(center)[
-              #if current-heading.body == [参考文献] or current-heading.body == [致#h(2em)谢] {
-                current-heading.body
-              } else {
-                "第" + numbering("一", heading-number) + "章 " + h(0.5em) + current-heading.body
-              }
-            ]
-            v(-8pt)
-          }
+          ]
+          v(-8pt)
+        }
         line(length: 100%, stroke: 0.5pt)
       }
     },
@@ -111,12 +76,26 @@
   body
 }
 
+// 静态页眉样式，居中显示标题
+#let _static_page_header_style(title: "", body) = {
+  set page(
+    header: context {
+      set text(font: "SimSun", size: zh(5))
+      set align(center)
+      [#title]
+      v(-8pt)
+      line(length: 100%, stroke: 0.5pt)
+    },
+  )
+  body
+}
+
 // 设置基本字体样式 小四号宋体
 #let _basic_font_style(body) = {
   set text(
     font: ("Times New Roman", "SimSun"),
     size: zh(-4), // 小四号字体
-    lang: "zh",   // 主要语言为中文
+    lang: "zh", // 主要语言为中文
   )
 
   body
@@ -126,8 +105,9 @@
 #let _basic_par_style(body) = {
   set par(
     justify: true,
-    leading: 1.05em, // 1.5倍行距
+    leading: 1.1em, // 1.5倍行距
     first-line-indent: 2em, // 首行缩进2字符
+    spacing: 1em,
   )
   body
 }
@@ -154,11 +134,11 @@
     set text(weight: "bold", size: zh(3))
     set align(center)
     show regex("[0-9]+"): text.with(font: "Arial")
-    v(1.5em)
+    v(1.155em)
     it
     v(1em)
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-    v(-0.54em)
+    v(-1.225em)
   }
 
   // 二级标题格式：四号黑体左对齐
@@ -167,10 +147,9 @@
     set text(weight: "bold", size: zh(4))
     set align(left)
     show regex("[0-9]+"): text.with(font: "Arial")
+    v(0.3em)
     it
-    v(0.5em)
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-    v(-0.54em)
   }
 
   // 三级标题格式：小四号黑体左对齐
@@ -179,10 +158,8 @@
     set text(weight: "bold", size: zh(-4))
     set align(left)
     show regex("[0-9]+"): text.with(font: "Arial")
-    v(0.5em)
     it
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-    v(-0.54em)
   }
 
   // 参考文献标题样式

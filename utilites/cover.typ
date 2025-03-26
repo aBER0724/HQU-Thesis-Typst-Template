@@ -50,10 +50,9 @@
       align: (center, center),
       // [#text(font: "Microsoft YaHei", size: 22pt,  weight: 900)[题目：]], [#text(font: "Microsoft YaHei", size: 22pt,  weight: 900)[#title]],
       [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#v(1em)题目：]],
-      [#v(1em)#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[计算机科学与技术学院]],
+      [#v(1em)#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[#title]],
       hlinex(start: 1, stroke: 0.5pt),
       [#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[]],
-      [#v(1em)#text(font: "Microsoft YaHei", size: 22pt, weight: 900)[本科毕业设计（论文）模板]],
       hlinex(start: 1, stroke: 0.5pt),
     )
     #v(3em)

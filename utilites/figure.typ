@@ -14,7 +14,7 @@
   let figs-array = if type(figs) == array { figs } else { (figs,) }
   let captions-array = if type(individual-captions) == array { individual-captions } else { (individual-captions) }
 
-  // 自动生成子图标签，如果未提供
+
   let labels-array = if subfigure-labels != () {
     // 如果提供了标签，使用提供的标签
     if type(subfigure-labels) == array { subfigure-labels } else { (subfigure-labels) }

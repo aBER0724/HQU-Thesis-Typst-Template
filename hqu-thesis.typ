@@ -26,6 +26,7 @@
   let fig-counter = counter("figure")
   show: _basic_font_style
   show: _basic_par_style
+  show: _page_footer_style
   show: _basic_heading_style
   show: _page_header_style.with(title: title)
 
