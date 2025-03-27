@@ -2,8 +2,12 @@
 #import "utilites/abstract.typ": chinese-abstract, english-abstract
 #import "utilites/basic-style.typ": *
 #import "utilites/table-of-contens.typ": table-of-contents
-#import "utilites/reference.typ": reference-content
+#import "utilites/reference.typ": reference-content, bib_cite
 #import "utilites/acknowledgement.typ": acknowledgement-content
+#import "utilites/equation.typ": _set_equation_numbering
+#import "utilites/abstract.typ": chinese-abstract, english-abstract
+#import "utilites/figure.typ": *
+#import "@preview/lovelace:0.3.0": *
 
 // 华侨大学论文模板主函数
 #let thesis-hqu(
@@ -31,6 +35,7 @@
   show: _basic_par_style
   show: _page_footer_style
   show: _basic_heading_style
+  show: _set_equation_numbering
   show: _page_header_style.with(title: title)
 
 

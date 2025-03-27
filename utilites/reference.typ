@@ -20,3 +20,9 @@
     bibliography("../" + file_path, title: none, style: "gb-7714-2005-numeric")
   }
 }
+
+#let bib_cite(..names) = {
+  for name in names.pos() {
+    cite(name)
+  }
+}

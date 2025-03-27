@@ -1,7 +1,6 @@
-#import "hqu-thesis.typ": thesis-hqu
-#import "utilites/abstract.typ": chinese-abstract, english-abstract
-#import "utilites/figure.typ": table-hqu, figures-hqu
-#import "@preview/mitex:0.2.5": *
+#import "hqu-thesis.typ": *
+#import "@preview/mitex:0.2.5": * // LaTex公式
+#import "@preview/codelst:2.0.2": sourcecode // 代码块
 
 // 基本信息配置
 #let title = "华侨大学计算机学院本科毕业论文模板使用指南"
@@ -11,7 +10,7 @@
 #let department = "计算机科学与技术学院"
 #let major = "计算机科学与技术"
 #let supervisor = "李四 教授"
-#let date = "2025年3月"
+#let date = "2024年6月"
 #let is-coop = false
 #let keywords = ("毕业论文", "Typst", "论文模板", "排版指南")
 #let keywords-en = ("Thesis", "Typst", "Template", "Formatting Guide")
@@ -288,6 +287,24 @@ Typst支持有序列表和无序列表：
 
 == 数学公式
 
+$ A = pi r^2 $ <eq1>
+
+根据@eqt:eq1 ，推断出@eqt:eq2
+
+$ x < y => x gt.eq.not y $ <eq2>
+
+然后也有多行的如@eqt:eq3，标签名字可以自定义
+
+$
+  sum_(k=0)^n k
+  &< 1 + ... + n \
+  &= (n(n+1)) / 2
+$ <eq3>
+
+如果不想编号就在公式后面使用标签 `<->`
+
+$ x < y => x gt.eq.not y $ <->
+
 使用`$`符号包围行内公式：$E = "mc"^2$
 
 使用`$ $`包围行间公式：
@@ -296,15 +313,56 @@ $ F(x) = integral_(- infinity)^(infinity) f(t) e^(-2 pi i t x) d t $
 
 复杂公式示例：
 
-$ nabla times vec(B) - 1/c (partial vec(E))/(partial t) = 4pi/c vec(j) $
+$ nabla times vec(B) - 1 / c (partial vec(E)) / (partial t) = 4pi / c vec(j) $
 
-矩阵示例：
+也可以使用`#mitex()`函数插入LaTeX公式：
 
-$ A = mat(
-  a_(11), a_(12), a_(13);
-  a_(21), a_(22), a_(23);
-  a_(31), a_(32), a_(33)
-) $
+#mitex(`
+  \newcommand{\f}[2]{#1f(#2)}
+  \f\relax{x} = \int_{-\infty}^\infty
+    \f\hat\xi\,e^{2 \pi i \xi x}
+    \,d\xi
+`)
+
+== 代码
+
+=== 代码块
+#sourcecode[```typ
+#show "ArtosFlow": name => box[
+  #box(image(
+    "logo.svg",
+    height: 0.7em,
+  ))
+  #name
+]
+
+This report is embedded in the
+ArtosFlow project. ArtosFlow is a
+project of the Artos Institute.
+```]
+
+=== 伪代码
+
+#figure(
+  kind: "algorithm",
+  supplement: [Algorithm],
+
+  pseudocode-list(booktabs: true, numbered-title: [My cool algorithm])[
+    + do something
+    + do something else
+    + *while* still something to do
+      + do even more
+      + *if* not done yet *then*
+        + wait a bit
+        + resume working
+      + *else*
+        + go home
+      + *end*
+    + *end*
+  ]
+) <cool>
+
+See @cool for details on how to do something cool.
 
 = 引用与脚注
 
@@ -316,11 +374,11 @@ $ A = mat(
 
 == 参考文献引用
 
-参考文献使用`@citekey`格式引用。例如：
+参考文献使用`<citekey>`格式引用。例如：
 
-根据Smith等人的研究，大语言模型在自然语言处理领域取得了显著进展。
+根据Smith等人的研究#bib_cite(<girshick2014rich>)，大语言模型在自然语言处理领域取得了显著进展。
 
-
+多个引用可以组合使用：#bib_cite(<girshick2014rich>, <liu2016ssd>, <redmon2016you>)
 
 引用将自动链接到参考文献列表，并根据引用样式进行格式化。
 
@@ -363,5 +421,3 @@ Typst为华侨大学计算机学院学生提供了一种现代化、高效的论
 4. 使用脚注和引用
 
 与传统工具相比，Typst具有学习曲线平缓、编译速度快、语法简洁等优势，特别适合编程背景的学生使用。希望本指南能帮助您顺利完成毕业论文的排版工作，专注于内容创作而非格式调整。
-
-// 在这里，参考文献会自动生成
