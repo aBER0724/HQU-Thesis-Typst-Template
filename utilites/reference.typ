@@ -12,7 +12,7 @@
   // 隐藏引用所有参考文献，但不显示引用标记
   {
     set text(size: 0pt)
-    [@girshick2014rich; @redmon2016you; @liu2016ssd]
+    []
   }
 
   {

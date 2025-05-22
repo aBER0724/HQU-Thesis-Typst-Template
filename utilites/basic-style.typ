@@ -1,6 +1,39 @@
 #import "@preview/cuti:0.3.0": show-cn-fakebold
 #import "@preview/pointless-size:0.1.1": zh
 
+// redact 函数：用等长的 'X' 替换内容（如果启用）
+#let redact(body, enabled: false) = { // 移除 fill 和 height 参数
+  if enabled {
+    context {
+      // 1. 确保 body 是 content 类型
+      let body-content = if type(body) == str {[#body]} else {body}
+      
+      // 2. 测量原始内容的渲染宽度
+      let body-width = measure(body-content).width
+      
+      // 3. 测量单个 'X' 在当前上下文的宽度
+      let x-width = measure(text("X")).width
+      
+      // 4. 计算需要多少个 'X' 来匹配宽度 (避免除以零)
+      let num-x = if x-width > 0pt {
+        // 四舍五入到最接近的整数个 'X' (使用 calc 模块)
+        calc.abs(calc.round(body-width / x-width))
+      } else {
+        1 // 如果 'X' 宽度为零，默认显示 1 个
+      }
+
+      // 5. 确保至少显示一个 'X' (使用 calc 模块)
+      let final-num-x = int(calc.max(1, num-x))
+
+      // 6. 生成并返回 'X' 字符串
+      text("X" * final-num-x)
+    }
+  } else {
+    // 如果未启用，确保返回的是 content 类型
+    if type(body) == str {[#body]} else {body}
+  }
+}
+
 // 页眉样式函数空实现
 #let _page_header_style(title) = { }
 
@@ -13,7 +46,7 @@
       set text(font: "Times New Roman", size: zh(5))
       let page-num = counter(page).get().first()
       if page-num > 3 {
-        text(font: "Times New Roman", size: zh(5))[#(page-num - 3)]
+        text(font: "Times New Roman", size: zh(5))[#(page-num - 4)]
       }
     },
   )
@@ -173,5 +206,17 @@
     par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
   }
 
+  body
+}
+
+// 设置代码块样式
+#let _code_block_style(body) = {
+  show raw.where(block: true): block => {
+    set text(font: "SimHei", size: zh(-4))
+    set align(left)
+    set par(first-line-indent: 0em)
+    block
+  }
+  
   body
 }

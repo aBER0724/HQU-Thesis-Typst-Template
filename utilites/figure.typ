@@ -59,48 +59,46 @@
       })
   )
 
-  figure(
-    kind: "image",
-    supplement: "图",
-    // 这里不直接返回table-content，而是构建一个带有caption的内容
-    {
-      // 这个block将包含标题和表格内容
-      block({
-        // 获取当前章节号和表格编号，用于显示标题
-        context {
-          let headings = query(heading.where(level: 1))
-          let chapter = 1
-
-          // 查找当前位置之前的最近章节标题
-          let current-location = here()
-          let current-page = counter(page).at(current-location).first()
-
-          for hdg in headings {
-            let hdg-page = counter(page).at(hdg.location()).first()
-            if hdg-page <= current-page {
-              chapter = counter(heading).at(hdg.location()).at(0, default: 1)
-            } else {
-              break
-            }
+  // figure_actual_body contains the grid AND the manually constructed "图 X.Y caption"
+  let figure_actual_body = {
+    block({
+      context {
+        let headings = query(heading.where(level: 1));
+        let chapter = 1;
+        let current-location = here();
+        let current-page = counter(page).at(current-location).first();
+        for hdg in headings {
+          let hdg-page = counter(page).at(hdg.location()).first();
+          if hdg-page <= current-page {
+            chapter = counter(heading).at(hdg.location()).at(0, default: 1);
+          } else {
+            break;
           }
-
-          let table-num = counter(figure.where(kind: "image")).at(here()).first()
-
-          // 显示表格标题
-          set text(font: "SimHei", size: zh(-4))
-          show regex("[0-9]+"): text.with(font: "Times New Roman")
-          set align(center)
-
-          grid-content
-
-          [图#numbering("一", chapter)#[.]#h(-0.25em)#table-num#h(1em)#caption]
-          v(0.5em)
         }
-      })
-    },
+        let fig_num_in_chapter = counter(figure.where(kind: "image")).at(here()).first(); // This is N in X.N
+
+        set text(font: "SimHei", size: zh(-4));
+        show regex("[0-9]+"): text.with(font: "Times New Roman");
+        set align(center);
+
+        grid-content; // The images
+
+        // Manually build the caption string
+        [图#numbering("1", chapter)#[.]#h(-0.25em)#fig_num_in_chapter#h(1em)#caption];
+        v(-.5em);
+      }
+    })
+  };
+
+  // Call the base `figure` function.
+  // Its body is `figure_actual_body` which has the images and the full caption text.
+  // No `supplement` argument needed here if `figure_actual_body` does it all.
+  figure(
+    figure_actual_body,
+    kind: "image",
+    supplement: "图"
   )
-  par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
-  v(-0.54em)
+  par(leading: 0em)[#text(size: 0.0em)[#h(0.0em)]]
 }
 
 // 表样式
@@ -218,7 +216,7 @@
           show regex("[0-9]+"): text.with(font: "Times New Roman")
           set align(center)
 
-          [表#numbering("一", chapter)#[.]#h(-0.25em)#table-num#h(1em)#caption]
+          [表#numbering("1", chapter)#[.]#h(-0.25em)#table-num#h(1em)#caption]
         }
 
         // 显示表格内容
@@ -229,3 +227,5 @@
   par(leading: 1em)[#text(size: 0.0em)[#h(0.0em)]]
   v(-0.54em)
 }
+
+

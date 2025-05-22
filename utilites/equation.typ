@@ -2,9 +2,8 @@
 
 #let _set_equation_numbering(body) ={
     show heading: i-figured.reset-counters
-    show figure: i-figured.show-figure.with(numbering: "一-1")
-    show math.equation: i-figured.show-equation.with(numbering: "(一-1)")
-
+    set math.equation(supplement: "公式")
+    show math.equation: i-figured.show-equation.with(numbering: "(1-1)")
     body
 }
 
