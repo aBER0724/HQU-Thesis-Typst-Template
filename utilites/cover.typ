@@ -10,7 +10,7 @@
   student-id: "", // 学号
   department: "", // 学院名称
   major: "", // 专业名称
-  grade: "", // 届别
+  session: "", // 届别
   supervisor: "", // 指导教师
   date: none, // 日期
   is-coop: false, // 是否校企合作项目
@@ -29,12 +29,15 @@
     // 论文题目信息
     #gridx(
       columns: (2.44cm, 11.77cm),
-      rows: 2.5em,
+      rows: 2em,
       align: (center, center),
       [#text(font: "SimHei", size: zh(2))[题目：]],
-      [#par(leading: 1em, justify: false)[#text(font: "SimHei", size: zh(2))[#underline(offset: 3pt)[#title]]]],
+      [#par(leading: 0.45em, justify: false)[#text(font: "SimHei", size: zh(2))[#title]]],
+      hlinex(start: 1, stroke: 0.75pt),
+      [],
+      hlinex(start: 1, stroke: 0.75pt),
     )
-    #v(7em)
+    #v(2em)
 
     // 学生信息表格
     #set text(size: zh(4))
@@ -49,7 +52,7 @@
       [#major],
       hlinex(start: 1, stroke: 0.5pt),
       [年#h(2em)级],
-      [#text(font: ("Times New Roman", "SimSun"))[#grade]级],
+      [#text(font: ("Times New Roman", "SimSun"))[#session]级],
       hlinex(start: 1, stroke: 0.5pt),
       [学#h(2em)号],
       [#text(font: "Times New Roman")[#redact(student-id, enabled: is-redact)]],
@@ -69,7 +72,7 @@
 
     #place(
       bottom + center,
-      dy: 3.5em,
+      dy: 1em,
       dx: 0em,
       [    
         #text(font: "SimHei", size: zh(4))[华侨大学教务处印制]

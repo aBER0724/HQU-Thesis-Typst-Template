@@ -39,8 +39,10 @@
 
   if keywords-en.len() > 0 {
     v(3.25em)
-    set par(first-line-indent: 0em, leading: 0.5em)
-    [#text(weight: "bold")[Key words:]#h(0.5em)#keywords-en.join("; ")]
+    block(inset: (left: 0pt))[
+      #set par(first-line-indent: 0em, leading: 0.5em)
+      #text(weight: "bold")[Key words:]#h(0.5em)#keywords-en.join("; ")
+    ]
   }
   pagebreak()
 }
