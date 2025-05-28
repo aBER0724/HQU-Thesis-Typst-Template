@@ -10,7 +10,7 @@
   student-id: "", // 学号
   department: "", // 学院名称
   major: "", // 专业名称
-  session: "", // 届别
+  grade: "", // 年级
   supervisor: "", // 指导教师
   date: none, // 日期
   is-coop: false, // 是否校企合作项目
@@ -32,7 +32,7 @@
       rows: 2em,
       align: (center, center),
       [#text(font: "SimHei", size: zh(2))[题目：]],
-      [#par(leading: 0.45em, justify: false)[#text(font: "SimHei", size: zh(2))[#title]]],
+      [#par(leading: 0.7em, justify: false)[#text(font: "SimHei", size: zh(2))[#title]]],
       hlinex(start: 1, stroke: 0.75pt),
       [],
       hlinex(start: 1, stroke: 0.75pt),
@@ -52,7 +52,7 @@
       [#major],
       hlinex(start: 1, stroke: 0.5pt),
       [年#h(2em)级],
-      [#text(font: ("Times New Roman", "SimSun"))[#session]级],
+      [#text(font: ("Times New Roman", "SimSun"))[#grade]级],
       hlinex(start: 1, stroke: 0.5pt),
       [学#h(2em)号],
       [#text(font: "Times New Roman")[#redact(student-id, enabled: is-redact)]],

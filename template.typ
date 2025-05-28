@@ -13,10 +13,10 @@
 #let department = "计算机科学与技术学院"
 #let major = "计算机科学与技术"
 #let supervisor = "李四 教授"
-#let date = "2024年6月"
+#let date = "2025年6月"
 #let keywords = ("毕业论文", "Typst", "论文模板", "排版指南")
 #let keywords-en = ("Thesis", "Typst", "Template", "Formatting Guide")
-#let is-redact = true
+#let is-redact = false
 
 // 中文摘要内容
 #let abstract = [
